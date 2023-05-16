@@ -67,10 +67,10 @@ class BlankFragment : Fragment() {
         this.progressBar.visibility = View.VISIBLE
         CoroutineScope(Dispatchers.IO+ exceptionHandler).launch {
             val response = Endpoint.createEndpoint().getAllRestaurents()
+
             withContext(Dispatchers.Main) {
                 progressBar.visibility = View.INVISIBLE
                 if (response.isSuccessful && response.body() != null) {
-                    Log.d("getRestaurent","succed and not null")
                     restaurentModel.data = response.body()!!.toMutableList()
                     recyclerView.adapter = MyAdapter(requireActivity(), restaurentModel.data,vm)
                 } else {

@@ -20,7 +20,7 @@ class MenuAdapter(val ctx:Context, val data:List<Menu>, val vm: MyModel):Recycle
     class MyViewHolder(val binding: MenuLayoutBinding) : RecyclerView.ViewHolder(binding.root)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.binding.apply {
-            imageView.setImageResource(data[position].image)
+           // imageView.setImageResource(data[position].image)
             textView2.text = data[position].nom
             textView3.text = data[position].prix.toString()+"DA"
         }

@@ -14,5 +14,5 @@ data class Restaurent(
     val restaurentInstagrame:String,
     val restaurentFacebook:String,
     val restaurentImage:Int,
-    val listMenu:List<Menu>?
+    val listMenu: MutableList<Menu>?
     ):java.io.Serializable

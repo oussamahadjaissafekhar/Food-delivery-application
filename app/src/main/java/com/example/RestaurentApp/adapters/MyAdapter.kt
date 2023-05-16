@@ -4,8 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.RestaurentApp.entity.Restaurent
 import com.example.RestaurentApp.openCall
 import com.example.RestaurentApp.openFacebook
@@ -24,6 +26,15 @@ class MyAdapter(val ctx:Context, val data:List<Restaurent>, val vm: MyModel):Rec
     override fun getItemCount() = data.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val currentItem = vm.data[position]
+
+        // Find the ImageView in your ViewHolder
+        val imageView = holder.itemView.findViewById<ImageView>(R.id.Logo)
+
+        // Use Glide to load the image into the ImageView
+        Glide.with(holder.itemView)
+            .load(currentItem.restaurentLogo)
+            .into(imageView)
         holder.binding.apply {
             textName.text = data[position].restaurentName
             //Logo.setImageResource(data[position].restaurentLogo)

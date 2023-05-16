@@ -5,7 +5,7 @@ import com.example.RestaurentApp.entity.Menu
 data class Restaurent(
     val restaurentId:Int,
     val restaurentName:String,
-    val restaurentLogo:Int,
+    val restaurentLogo:String,
     val restaurentType: String,
     val rating:Float,
     val restaurentPhone:String,
@@ -13,6 +13,6 @@ data class Restaurent(
     val restaurentLatitude:String,
     val restaurentInstagrame:String,
     val restaurentFacebook:String,
-    val restaurentImage:Int,
+    val restaurentImage:String,
     val listMenu: MutableList<Menu>?
     ):java.io.Serializable

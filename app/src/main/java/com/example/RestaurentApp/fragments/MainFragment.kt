@@ -43,16 +43,12 @@ class BlankFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         recyclerView = binding.recyclerView
         restaurentModel = ViewModelProvider(requireActivity()).get(MyModel::class.java)
-        val button = view.findViewById(R.id.button) as Button
         progressBar = view.findViewById(R.id.progressBar) as ProgressBar
-
-        button.setOnClickListener {
-            if(restaurentModel.data.isEmpty()) {
-                loadRestaurents()
-            }
-            else {
-                recyclerView.adapter = MyAdapter(requireActivity(),vm.data,vm)
-            }
+        if(restaurentModel.data.isEmpty()) {
+            loadRestaurents()
+        }
+        else {
+            recyclerView.adapter = MyAdapter(requireActivity(),vm.data,vm)
         }
     }
 

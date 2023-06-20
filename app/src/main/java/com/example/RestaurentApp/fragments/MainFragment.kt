@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.RestaurentApp.adapters.CardAdapter
 import com.example.RestaurentApp.adapters.MyAdapter
 import com.example.RestaurentApp.viewmodel.MyModel
 import com.example.movieexample.R

@@ -1,7 +1,8 @@
+package com.example.RestaurentApp.entity
+
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import com.example.RestaurentApp.entity.Restaurant
 
 @Entity(
     tableName = "MenuItem",

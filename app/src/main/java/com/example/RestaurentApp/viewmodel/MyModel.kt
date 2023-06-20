@@ -15,8 +15,7 @@ class MyModel:ViewModel (){
 
     fun loadData():List<Restaurent> {
         val listMenu = mutableListOf<Menu>(
-            Menu(1,"Cheese Burger", R.drawable.cheeseburger,150,"Burger avec cheez"),
-            Menu(2,"Cheese Burger",R.drawable.cheeseburger,150,"Burger avec cheez")
+
         )
         val data = mutableListOf<Restaurent>()
         /*data.add(Restaurent(1,"res1",R.drawable.logo,"Indien", 4.5F,"0540589997","41.40338","2.17403","https://www.instagram.com","https://www.facebook.com","R.drawable.rest1,listMenu"))

@@ -4,10 +4,10 @@ function Connect(){
     const db = knex({
       client: 'mysql',
       connection: {
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'projetmobil',
+        host: 'mysql-bossama.alwaysdata.net',
+        user: 'bossama_projetmb',
+        password: 'projetmb',
+        database: 'bossama_projettdm',
       },
     });
         // check if the connection established  
@@ -126,7 +126,7 @@ function getRestaurentMenu (db,restaurentId){
       });
   })
 }
-async function RestaurantMenu(restaurentId){
+async function RestaurantMenu(res,restaurentId){
 const db = Connect();
 try {
   const jsonData = await getRestaurentMenu(db,restaurentId);

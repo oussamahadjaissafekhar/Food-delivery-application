@@ -54,21 +54,12 @@ const server = http.createServer(async (req, res) => {
       console.log("get menu");
       const restaurentId = requestUrl.query.restaurentId; // Extract the restaurant ID from the request URL parameters
       console.log('Get menu for restaurant ID:', restaurentId);
-      console.log(typeof(restaurentId))
-      /*db('menuitem')
-      .select()
-      .where('restaurentId' , '=' ,restaurentId)
-      .then((results) => {
-        console.log('Retrieved data:', results);
-        const jsonData = JSON.stringify(results);
-        res.write(jsonData);
-        res.end();
-      })
-      .catch((err) => {
-        console.error('Error retrieving data:', err);
-        res.write('<h1>404 Not Found</h1>');
-        res.end();
-      });*/
+      try{
+        await RestaurantMenu(res,restaurentId);
+      }catch (error) {
+        console.error('Error retrieving data:', error);
+        res.write('{}');
+      }
     }else{
       res.writeHead(404, { 'Content-Type': 'text/html' });
       res.write('<h1>404 Not Found</h1>');

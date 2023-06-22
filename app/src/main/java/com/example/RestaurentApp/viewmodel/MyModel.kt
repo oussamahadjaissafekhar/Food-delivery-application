@@ -1,17 +1,29 @@
 package com.example.RestaurentApp.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.RestaurentApp.entity.Menu
+import com.example.RestaurentApp.entity.OrderItem
 import com.example.RestaurentApp.entity.Restaurent
 import com.example.movieexample.R
 
 class MyModel:ViewModel (){
+    private val _orderItems = MutableLiveData<List<OrderItem>>()
+    val orderItems: LiveData<List<OrderItem>> = _orderItems
+
+    fun updateOrderItems(updatedItems: List<OrderItem>) {
+        _orderItems.value = updatedItems
+    }
     var restaurantId = -1
     var menuId = -1
+    var userId=-1
     var data = mutableListOf<Restaurent>()
+    var menuData = mutableListOf<Menu>()
     val restaurents=loadData()
     var position = -1
     var positionMenu =-1
+    var restaurentId_card=0
 
     fun loadData():List<Restaurent> {
         val listMenu = mutableListOf<Menu>(

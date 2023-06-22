@@ -46,16 +46,66 @@ override fun onCreateView(
                 binding.textView7.text = quantity.toString()
             }
         }
-        binding.button3.setOnClickListener(){
+        binding.button3.setOnClickListener() {
+            val note = binding.note.text.toString()
+
+            var item = OrderItem(
+                vm.menuId,
+                Integer.parseInt(binding.textView7.text.toString()),
+                vm.restaurantId,
+                vm.data.get(vm.position).listMenu?.get(vm.positionMenu)?.image.toString(),
+                vm.data.get(vm.position).listMenu?.get(vm.positionMenu)?.nom.toString(),
+                vm.data.get(vm.position).listMenu?.get(vm.positionMenu)?.descriptif.toString(),
+                vm.data.get(vm.position).listMenu?.get(vm.positionMenu)?.prix!!.toDouble(),
+                note
+            )
+            //verify that the database is empty to set the restaurent id
+            val cart_items =
+                AppDatabase.buildDatabase(requireActivity())?.getOrderItemDo()?.getOrderItems()
+                    ?.toMutableList()
+            if (cart_items!!.size == 0) {
+                AppDatabase.buildDatabase(requireActivity())?.getOrderItemDo()
+                    ?.addMenuItemToOrder(item)
+                val updatedItems =
+                    AppDatabase.buildDatabase(requireActivity())?.getOrderItemDo()
+                        ?.getOrderItems()!!
+                        .toMutableList()
+
+                vm.updateOrderItems(updatedItems)
+                vm.restaurentId_card = item.restaurant_id
 
 
-            var item=OrderItem(vm.menuId,Integer.parseInt(binding.textView7.text.toString()),vm.restaurantId,vm.data.get(vm.position).listMenu?.get(vm.positionMenu)?.image.toString(),vm.data.get(vm.position).listMenu?.get(vm.positionMenu)?.nom.toString(),vm.data.get(vm.position).listMenu?.get(vm.positionMenu)?.descriptif.toString(), vm.data.get(vm.position).listMenu?.get(vm.positionMenu)?.prix!!.toDouble(),"ss")
-            AppDatabase.buildDatabase(requireActivity())?.getOrderItemDo()?.addMenuItemToOrder(item)
+            } else {
+                if(item.restaurant_id==vm.restaurentId_card){
+                //verify if it is already exist in database
+                var potential_item = AppDatabase.buildDatabase(requireActivity())?.getOrderItemDo()
+                    ?.getOrderItemBymenu(item.menu_item_id, item.restaurant_id)!!
+                    .toMutableList()
+                if (potential_item.size > 0) {
+                    Toast.makeText(
+                        requireActivity(),
+                        "this menu already added to your cart      you can modify it in your card ",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    AppDatabase.buildDatabase(requireActivity())?.getOrderItemDo()
+                        ?.addMenuItemToOrder(item)
+                    val updatedItems =
+                        AppDatabase.buildDatabase(requireActivity())?.getOrderItemDo()
+                            ?.getOrderItems()!!
+                            .toMutableList()
 
-            val order_item=AppDatabase.buildDatabase(requireActivity())?.getOrderItemDo()?.getOrderItems()?.toMutableList()
-            binding.textView8.text= order_item?.get(0)?.name.toString()
+                    vm.updateOrderItems(updatedItems)
+                    val order_item = AppDatabase.buildDatabase(requireActivity())?.getOrderItemDo()
+                        ?.getOrderItems()?.toMutableList()
+                    binding.textView8.text = order_item?.get(0)?.name.toString()
 
+                }
+            }
+              else{
+                    Toast.makeText(requireActivity(), "you cannot add menus from different restaurents , please choose one ", Toast.LENGTH_SHORT).show()
+              }
+            }
         }
-
     }
 }

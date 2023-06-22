@@ -27,10 +27,10 @@ const restaurantData = [{
     listMenu: menuData
   },
   {
-    restaurentId: 30,
-    restaurentName: "String",
+    restaurentId: 31,
+    restaurentName: "afroestaurent",
     restaurentLogo: 1,
-    restaurentType: "String",
+    restaurentType: "african restaurent",
     rating: 3.5,
     restaurentPhone: "String",
     restaurentLongitude: "String",

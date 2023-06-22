@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.RestaurentApp.adapters.MyAdapter
 import com.example.RestaurentApp.viewmodel.MyModel
-import com.example.movieexample.R
-import com.example.movieexample.databinding.MainfragmentBinding
 import com.example.movieexample.retrofit.Endpoint
+import com.example.restaurentApp.R
+import com.example.restaurentApp.databinding.MainfragmentBinding
 import kotlinx.coroutines.*
 
 

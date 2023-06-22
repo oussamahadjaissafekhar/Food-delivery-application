@@ -3,9 +3,10 @@ package com.example.RestaurentApp.viewmodel
 import androidx.lifecycle.ViewModel
 import com.example.RestaurentApp.entity.Menu
 import com.example.RestaurentApp.entity.Restaurent
-import com.example.movieexample.R
+import com.example.restaurentApp.R
 
 class MyModel:ViewModel (){
+    var userId = -1
     var restaurantId = -1
     var menuId = -1
     var data = mutableListOf<Restaurent>()

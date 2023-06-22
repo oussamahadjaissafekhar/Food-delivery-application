@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.RestaurentApp.entity.Menu
 import com.example.RestaurentApp.viewmodel.MyModel
-import com.example.movieexample.R
-import com.example.movieexample.databinding.MenuLayoutBinding
+import com.example.restaurentApp.R
+import com.example.restaurentApp.databinding.MenuLayoutBinding
 
 class MenuAdapter(val ctx:Context, val data:List<Menu>, val vm: MyModel):RecyclerView.Adapter<MenuAdapter.MyViewHolder>()  {
  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

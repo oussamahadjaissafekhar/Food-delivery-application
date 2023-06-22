@@ -14,8 +14,8 @@ import com.example.RestaurentApp.openFacebook
 import com.example.RestaurentApp.openInsta
 import com.example.RestaurentApp.openMaps
 import com.example.RestaurentApp.viewmodel.MyModel
-import com.example.movieexample.R
-import com.example.movieexample.databinding.RestaurentLayoutBinding
+import com.example.restaurentApp.R
+import com.example.restaurentApp.databinding.RestaurentLayoutBinding
 
 class MyAdapter(val ctx:Context, val data:List<Restaurent>, val vm: MyModel):RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 

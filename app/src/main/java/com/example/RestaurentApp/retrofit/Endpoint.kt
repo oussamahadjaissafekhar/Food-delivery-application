@@ -2,6 +2,7 @@ package com.example.movieexample.retrofit
 
 import com.example.RestaurentApp.entity.Menu
 import com.example.RestaurentApp.entity.Restaurent
+import com.example.RestaurentApp.entity.user
 import com.example.RestaurentApp.url
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -15,6 +16,8 @@ interface Endpoint {
     suspend fun getAllRestaurents(): Response<List<Restaurent>>
     @GET("getMenu")
     suspend fun getMenu(@Query("restaurentId") restaurentId: Int): Response<List<Menu>>
+    @GET("authenticate")
+    suspend fun authentification(@Query("user") user: String,@Query("password") password: String): Response<user>
     companion object {
         @Volatile
         var endpoint: Endpoint? = null

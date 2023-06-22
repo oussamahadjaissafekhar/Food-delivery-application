@@ -41,8 +41,7 @@ const server = http.createServer((req, res) => {
         res.write('<h1>404 Not Found</h1>');
         res.end();
       });
-}
-    else if (requestUrl.pathname  === '/getMenu') {
+}else if (requestUrl.pathname  === '/getMenu') {
       console.log("get menu");
       const restaurentId = requestUrl.query.restaurentId; // Extract the restaurant ID from the request URL parameters
       console.log('Get menu for restaurant ID:', restaurentId);
@@ -59,6 +58,29 @@ const server = http.createServer((req, res) => {
       .catch((err) => {
         console.error('Error retrieving data:', err);
         res.write('<h1>404 Not Found</h1>');
+        res.end();
+      });
+    }else if (requestUrl.pathname  === '/authenticate') {
+      console.log("authenticate");
+      let username = requestUrl.query.user; // Extract the restaurant ID from the request URL parameters
+      console.log('Get user for username:', username);
+      console.log(typeof(username))
+      let password = requestUrl.query.password; // Extract the restaurant ID from the request URL parameters
+      console.log('Get user for password:', password);
+      console.log(typeof(password))
+      db('muser')
+      .select()
+      .where('userName' , '=' ,username)
+      .where('password','=',password)
+      .then((results) => {
+        console.log('Retrieved data:', results);
+        const jsonData = JSON.stringify(results[0]);
+        res.write(jsonData);
+        res.end();
+      })
+      .catch((err) => {
+        console.error('Error retrieving data:', err);
+        res.write('{}');
         res.end();
       });
     } else {

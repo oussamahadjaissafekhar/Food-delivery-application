@@ -20,7 +20,7 @@
             tools:src="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/menuName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -31,17 +31,17 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="TextView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/menuName" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/mainus"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="24dp"
@@ -52,13 +52,13 @@
             app:layout_constraintVertical_bias="0.451" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/plus"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
             android:text="+"
             app:layout_constraintBottom_toBottomOf="@+id/textView6"
-            app:layout_constraintStart_toEndOf="@+id/textView7"
+            app:layout_constraintStart_toEndOf="@+id/quantity"
             app:layout_constraintTop_toTopOf="@+id/textView6"
             app:layout_constraintVertical_bias="0.483" />
 
@@ -73,19 +73,19 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/quantity"
             android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:text="0"
-            app:layout_constraintBottom_toBottomOf="@+id/button"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
-            app:layout_constraintStart_toEndOf="@+id/button"
-            app:layout_constraintTop_toTopOf="@+id/button" />
+            android:text="1"
+            app:layout_constraintBottom_toBottomOf="@+id/mainus"
+            app:layout_constraintEnd_toStartOf="@+id/plus"
+            app:layout_constraintStart_toEndOf="@+id/mainus"
+            app:layout_constraintTop_toTopOf="@+id/mainus" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/addToCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="28dp"
@@ -93,5 +93,16 @@
             android:text="Add to card"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/menuId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

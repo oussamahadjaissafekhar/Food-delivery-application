@@ -15,10 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.RestaurentApp.adapters.MenuAdapter
-import com.example.RestaurentApp.adapters.MyAdapter
 import com.example.RestaurentApp.viewmodel.MyModel
-import com.example.movieexample.databinding.RestaurentfragmentBinding
 import com.example.movieexample.retrofit.Endpoint
+import com.example.restaurentApp.databinding.RestaurentfragmentBinding
 import kotlinx.coroutines.*
 
 
@@ -45,11 +44,7 @@ class RestaurentFragment : Fragment() {
         val imageView: ImageView = binding.imageView4
         Glide.with(requireActivity()).load(vm.data[vm.position].restaurentImage).into(imageView)
         binding.RecyclerView.layoutManager = LinearLayoutManager(requireActivity())
-
-        if(restaurentModel.menuData.isEmpty()) {
-            Log.d("restid", restaurentModel.restaurantId.toString())
-            loadMenu(restaurentModel.restaurantId)
-        }
+        loadMenu(restaurentModel.restaurantId)
         /*val listMenu = vm.data[vm.position].listMenu
         binding.RecyclerView.adapter = if (listMenu != null) {
             MenuAdapter(requireActivity(), listMenu, vm)

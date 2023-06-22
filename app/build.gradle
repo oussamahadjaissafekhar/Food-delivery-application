@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.movieexample'
+    namespace 'com.example.restaurentApp'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.myrecyclerview"
+        applicationId "com.example.restaurentApp"
         minSdk 24
         targetSdk 33
         versionCode 1

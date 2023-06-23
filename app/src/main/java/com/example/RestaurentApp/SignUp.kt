@@ -41,11 +41,15 @@ class SignUp : AppCompatActivity() {
                     verifyFields(username,password,passwordConf,email,phone,address,profile)
                     Toast.makeText(this@SignUp, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 } else {
-                    val user = user(0,username.toString(),password.toString(),email.toString(),phone.toString(),address.toString(),profile.toString())
-                    val gson = Gson()
-                    val userString = gson.toJson(user)
-                    Log.d("user",user.toString())
-                    creatUser(userString)
+                    if(password.toString() == passwordConf.toString()){
+                        val user = user(0,username.toString(),password.toString(),email.toString(),phone.toString(),address.toString(),profile.toString())
+                        val gson = Gson()
+                        val userString = gson.toJson(user)
+                        Log.d("user",user.toString())
+                        creatUser(userString)
+                    }else{
+                        Toast.makeText(this@SignUp, "please check the password confirmation", Toast.LENGTH_SHORT).show()
+                    }
                 }
 
             }

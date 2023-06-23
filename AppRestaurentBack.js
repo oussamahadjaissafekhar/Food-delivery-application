@@ -214,39 +214,63 @@ async function addOrderItem(res,order){
     res.end();
   }
 }
-const createOrder = (order, orderItems) => {
-  const db = Connect()
-  return db.transaction((trx) => {
-    // Insert the order
-    return trx('orders')
-      .insert(order)
-      .then(([orderId]) => {
-        // Insert the order items with the associated order ID
-        const orderItemsWithOrderId = orderItems.map((item) => ({
-          ...item,
-          order_id: orderId,
-        }));
 
-        return trx('order_items').insert(orderItemsWithOrderId);
-      })
-      .then(() => {
-        // Commit the transaction if everything succeeds
-        trx.commit();
-      })
-      .catch((error) => {
-        // Rollback the transaction if an error occurs
-        trx.rollback();
-        throw error;
-      });
+function createOrder (db,order, orderItems) {
+  return new Promise((resolve, reject) => {
+    db.transaction((trx) => {
+      trx('morder')
+        .insert(order)
+        .then(([orderId]) => {
+          const orderItemsArray = Array.isArray(orderItems) ? orderItems : [orderItems];
+          const orderItemsWithOrderId = [];
+            orderItems.map((item) => {
+              const orderItemWithOrderId = {
+                ...item,
+                order_id: orderId,
+              };
+              orderItemsWithOrderId.push(orderItemWithOrderId);
+            });
+
+          return trx('orderitem').insert(orderItemsWithOrderId);
+        })
+        .then(() => {
+          trx.commit();
+          resolve();
+        })
+        .catch((error) => {
+          trx.rollback();
+          reject(error);
+        });
+    });
   });
 };
+
+async function insertOrderWithOrderItems(res,order,orderItems){
+  const db = Connect();
+  try {
+    const jsonData = await createOrder(db,order,orderItems);
+    if (jsonData == null) {
+      res.write('{}');
+    } else {
+      const jsonString = JSON.stringify(jsonData);
+      res.write(jsonString);
+    }
+  } catch (error) {
+    console.error('Error retrieving data:', error);
+    res.write('{}');
+  } finally {
+    Disconnect(db);
+    res.end();
+  }
+}
 module.exports = {
     Authentication,
     insertUser,
     Restaurants,
     RestaurantMenu,
     addOrder,
-    addOrderItem
+    addOrderItem,
+    insertOrderWithOrderItems
   };
 
 

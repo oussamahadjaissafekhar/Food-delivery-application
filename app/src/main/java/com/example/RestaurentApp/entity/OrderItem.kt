@@ -1,3 +1,6 @@
 package com.example.RestaurentApp.entity
 
-data class OrderItem()
+data class OrderItem(
+    val menu_item_id: Int,
+    val quantity: Int
+)

@@ -6,5 +6,4 @@ data class Menu(
     val image:String,
     val price:Float,
     val description:String,
-    val dietary_requirements:String
 ):java.io.Serializable

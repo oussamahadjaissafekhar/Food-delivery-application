@@ -45,12 +45,6 @@ class RestaurentFragment : Fragment() {
         Glide.with(requireActivity()).load(vm.data[vm.position].restaurentImage).into(imageView)
         binding.RecyclerView.layoutManager = LinearLayoutManager(requireActivity())
         loadMenu(restaurentModel.restaurantId)
-        /*val listMenu = vm.data[vm.position].listMenu
-        binding.RecyclerView.adapter = if (listMenu != null) {
-            MenuAdapter(requireActivity(), listMenu, vm)
-        } else {
-            MenuAdapter(requireActivity(), emptyList(), vm)
-        }  */
     }
 
     fun loadMenu(restaurentId : Int) {

@@ -54,7 +54,7 @@ async function Authentication(res,user){
       if (jsonData == null) {
         res.write('{}');
       } else {
-        const jsonString = JSON.stringify(jsonData);
+        const jsonString = JSON.stringify(jsonData[0]);
         res.write(jsonString);
       }
     } catch (error) {
@@ -81,7 +81,7 @@ function addUser(newRow){
 function insertUser(){
 
 }
-
+// Get all the reataurents from database query
 function getAllRestaurents(db){
   return new Promise((resolve, reject) => {
   db('restaurant')
@@ -94,6 +94,7 @@ function getAllRestaurents(db){
     });
   });
 }
+// Get all the reataurents from database
 async function Restaurants(res){
   const db = Connect();
     try {
@@ -112,7 +113,7 @@ async function Restaurants(res){
       res.end();
     }
 }
-
+// Get the menu of a reataurent from database query
 function getRestaurentMenu (db,restaurentId){
   return new Promise((resolve,reject) => {
     db('menuitem')
@@ -126,6 +127,7 @@ function getRestaurentMenu (db,restaurentId){
       });
   })
 }
+// Get the menu of a reataurent from database
 async function RestaurantMenu(res,restaurentId){
 const db = Connect();
 try {
@@ -144,11 +146,107 @@ try {
   res.end();
 }
 }
+// Add order to the database query 
+function insertOrder(db,order){
+  return new Promise((resolve,reject) => {
+    db('morder').insert(order)
+      .then(([insertedOrderId]) => { // Destructure the inserted order ID
+        return db('morder').where('order_id', insertedOrderId).first(); // Retrieve the inserted order by ID
+      })
+      .then(insertedOrder => {
+        resolve(insertedOrder); // Resolve the promise with the inserted order
+      })
+      .catch((error) => {
+        reject(error); // Reject the promise with the error
+      });
+  })
+}
+// Add order to the database query 
+async function addOrder(res,order){
+  const db = Connect();
+  try {
+    const jsonData = await insertOrder(db,order);
+    if (jsonData == null) {
+      res.write('{}');
+    } else {
+      const jsonString = JSON.stringify(jsonData);
+      res.write(jsonString);
+    }
+  } catch (error) {
+    console.error('Error retrieving data:', error);
+    res.write('{}');
+  } finally {
+    Disconnect(db);
+    res.end();
+  }
+}
+// Add order to the database query 
+function insertOrderItem(db,order){
+  return new Promise((resolve,reject) => {
+    db('orderitem').insert(order)
+      .then(([insertedOrderItemId]) => { // Destructure the inserted order ID
+        return db('orderitem').where('order_item_id', insertedOrderItemId).first(); // Retrieve the inserted order by ID
+      })
+      .then(insertedOrderItem => {
+        resolve(insertedOrderItem); // Resolve the promise with the inserted order
+      })
+      .catch((error) => {
+        reject(error); // Reject the promise with the error
+      });
+  })
+}
+// Add order to the database query 
+async function addOrderItem(res,order){
+  const db = Connect();
+  try {
+    const jsonData = await insertOrder(db,order);
+    if (jsonData == null) {
+      res.write('{}');
+    } else {
+      const jsonString = JSON.stringify(jsonData);
+      res.write(jsonString);
+    }
+  } catch (error) {
+    console.error('Error retrieving data:', error);
+    res.write('{}');
+  } finally {
+    Disconnect(db);
+    res.end();
+  }
+}
+const createOrder = (order, orderItems) => {
+  const db = Connect()
+  return db.transaction((trx) => {
+    // Insert the order
+    return trx('orders')
+      .insert(order)
+      .then(([orderId]) => {
+        // Insert the order items with the associated order ID
+        const orderItemsWithOrderId = orderItems.map((item) => ({
+          ...item,
+          order_id: orderId,
+        }));
+
+        return trx('order_items').insert(orderItemsWithOrderId);
+      })
+      .then(() => {
+        // Commit the transaction if everything succeeds
+        trx.commit();
+      })
+      .catch((error) => {
+        // Rollback the transaction if an error occurs
+        trx.rollback();
+        throw error;
+      });
+  });
+};
 module.exports = {
     Authentication,
     insertUser,
     Restaurants,
-    RestaurantMenu
+    RestaurantMenu,
+    addOrder,
+    addOrderItem
   };
 
 

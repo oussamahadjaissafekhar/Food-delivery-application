@@ -66,20 +66,38 @@ async function Authentication(res,user){
     }
 }
 // Ajout un utilisateur lors de sign up
-function addUser(newRow){
-  db('muser')
-    .insert(newRow)
-    .then(() => {
-      console.log('Row inserted successfully');
-      knex.destroy(); // Disconnect from the database
-    })
-    .catch((error) => {
-      console.error('Error inserting row:', error);
-      knex.destroy(); // Disconnect from the database
-    });
+function addUser(db,newUser){
+  return new Promise((resolve, reject) => {
+    db('muser')
+      .insert('newUser')
+      .then(([insertedUserId]) => { // Destructure the inserted order ID
+        return db('morder').where('order_id', insertedUserId).first(); // Retrieve the inserted order by ID
+      })
+      .then(insertedUser => {
+        resolve(insertedUser); // Resolve the promise with the inserted order
+      })
+      .catch((error) => {
+        reject(error); // Reject the promise with the error
+      });
+  });
+}
+async function insertUser(){
+  const db = Connect();
+  try {
+    const jsonData = await insertOrder(db,order);
+    if (jsonData == null) {
+      res.write('{}');
+    } else {
+      const jsonString = JSON.stringify(jsonData);
+      res.write(jsonString);
+    }
+  } catch (error) {
+    console.error('Error retrieving data:', error);
+    res.write('{}');
+  } finally {
+    Disconnect(db);
+    res.end();
   }
-function insertUser(){
-
 }
 // Get all the reataurents from database query
 function getAllRestaurents(db){

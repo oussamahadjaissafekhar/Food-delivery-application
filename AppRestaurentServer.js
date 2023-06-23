@@ -41,7 +41,10 @@ const server = http.createServer(async (req, res) => {
     }else if(pathname === '/addUser'){
       // Add new user : Sign up
     }else if(pathname === '/addOrder'){
+      console.log("body :",body)
       const parsedData = JSON.parse(body);
+      console.log("parsedData : ",parsedData);
+      console.log("Order : ",parsedData.order);
       const Order = JSON.parse(parsedData.order);
       const OrderItems = JSON.parse(parsedData.orderItems);
       console.log("add new Order")

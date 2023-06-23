@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.RestaurentApp.AppDatabase
 import com.example.RestaurentApp.adapters.CardAdapter
 import com.example.RestaurentApp.entity.OrderItem
 import com.example.RestaurentApp.viewmodel.MyModel
+import com.example.movieexample.R
 import com.example.movieexample.databinding.Fragment1Binding
 
 class Fragment1 : Fragment() {
@@ -62,7 +64,14 @@ class Fragment1 : Fragment() {
             binding.textView14.text=totalprice.toString()+" DA"
 
         }
+        binding.validate.setOnClickListener(){
+
+                view: View ->view.findNavController().navigate(R.id.action_fragment1_to_orderFragment)
+                vm.totalPrice=totalprice.toInt()
+
+        }
 
     }
 
 }
+

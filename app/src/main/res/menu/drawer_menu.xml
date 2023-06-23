@@ -6,14 +6,14 @@
         android:id="@+id/fragment1"
         android:enabled="true"
         android:icon="@drawable/ic_home_drawer"
-        android:title="First"
+        android:title="@string/card"
         android:visible="true" />
 
     <item
         android:id="@+id/fragment2"
         android:enabled="true"
         android:icon="@drawable/ic_sells_menu"
-        android:title="Second"
+        android:title="@string/second"
         android:visible="true" />
 
 
@@ -23,19 +23,19 @@
         android:id="@+id/fragment3"
         android:enabled="true"
         android:icon="@drawable/ic_alert_home"
-        android:title="Third"
+        android:title="@string/third"
         android:visible="true" />
     <item
         android:id="@+id/signIn2"
         android:enabled="true"
         android:icon="@drawable/ic_alert_home"
-        android:title="Third"
+        android:title="@string/sign_in"
         android:visible="true" />
     <item
         android:id="@+id/logout"
         android:enabled="true"
-        android:icon="@drawable/ic_alert_home"
-        android:title="Third"
+        android:icon="@drawable/ic_baseline_login_24"
+        android:title="@string/logout"
         android:visible="false" />
 
 

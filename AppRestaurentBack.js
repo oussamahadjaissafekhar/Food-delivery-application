@@ -66,20 +66,38 @@ async function Authentication(res,user){
     }
 }
 // Ajout un utilisateur lors de sign up
-function addUser(newRow){
-  db('muser')
-    .insert(newRow)
-    .then(() => {
-      console.log('Row inserted successfully');
-      knex.destroy(); // Disconnect from the database
-    })
-    .catch((error) => {
-      console.error('Error inserting row:', error);
-      knex.destroy(); // Disconnect from the database
-    });
+function addUser(db,newUser){
+  return new Promise((resolve, reject) => {
+    db('muser')
+      .insert('newUser')
+      .then(([insertedUserId]) => { // Destructure the inserted order ID
+        return db('morder').where('order_id', insertedUserId).first(); // Retrieve the inserted order by ID
+      })
+      .then(insertedUser => {
+        resolve(insertedUser); // Resolve the promise with the inserted order
+      })
+      .catch((error) => {
+        reject(error); // Reject the promise with the error
+      });
+  });
+}
+async function insertUser(){
+  const db = Connect();
+  try {
+    const jsonData = await insertOrder(db,order);
+    if (jsonData == null) {
+      res.write('{}');
+    } else {
+      const jsonString = JSON.stringify(jsonData);
+      res.write(jsonString);
+    }
+  } catch (error) {
+    console.error('Error retrieving data:', error);
+    res.write('{}');
+  } finally {
+    Disconnect(db);
+    res.end();
   }
-function insertUser(){
-
 }
 // Get all the reataurents from database query
 function getAllRestaurents(db){
@@ -214,38 +232,62 @@ async function addOrderItem(res,order){
     res.end();
   }
 }
-const createOrder = (order, orderItems) => {
-  const db = Connect()
-  return db.transaction((trx) => {
-    // Insert the order
-    return trx('orders')
-      .insert(order)
-      .then(([orderId]) => {
-        // Insert the order items with the associated order ID
-        const orderItemsWithOrderId = orderItems.map((item) => ({
-          ...item,
-          order_id: orderId,
-        }));
 
-        return trx('order_items').insert(orderItemsWithOrderId);
-      })
-      .then(() => {
-        // Commit the transaction if everything succeeds
-        trx.commit();
-      })
-      .catch((error) => {
-        // Rollback the transaction if an error occurs
-        trx.rollback();
-        throw error;
-      });
+function createOrder (db,order, orderItems) {
+  return new Promise((resolve, reject) => {
+    db.transaction((trx) => {
+      trx('morder')
+        .insert(order)
+        .then(([orderId]) => {
+          const orderItemsArray = Array.isArray(orderItems) ? orderItems : [orderItems];
+          const orderItemsWithOrderId = [];
+            orderItems.map((item) => {
+              const orderItemWithOrderId = {
+                ...item,
+                order_id: orderId,
+              };
+              orderItemsWithOrderId.push(orderItemWithOrderId);
+            });
+
+          return trx('orderitem').insert(orderItemsWithOrderId);
+        })
+        .then(() => {
+          trx.commit();
+          resolve();
+        })
+        .catch((error) => {
+          trx.rollback();
+          reject(error);
+        });
+    });
   });
 };
+
+async function insertOrderWithOrderItems(res,order,orderItems){
+  const db = Connect();
+  try {
+    const jsonData = await createOrder(db,order,orderItems);
+    if (jsonData == null) {
+      res.write('{}');
+    } else {
+      const jsonString = JSON.stringify(jsonData);
+      res.write(jsonString);
+    }
+  } catch (error) {
+    console.error('Error retrieving data:', error);
+    res.write('{}');
+  } finally {
+    Disconnect(db);
+    res.end();
+  }
+}
 module.exports = {
     Authentication,
     insertUser,
     Restaurants,
     RestaurantMenu,
     addOrder,
-    addOrderItem
+    addOrderItem,
+    insertOrderWithOrderItems
   };
 

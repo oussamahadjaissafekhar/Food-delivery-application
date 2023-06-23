@@ -23,6 +23,8 @@ interface OrderItemDao {
 
     @Query("SELECT * FROM OrderItem ")
     fun getOrderItems(): List<OrderItem>
+    @Query("DELETE FROM Orderitem")
+     fun deleteAll()
     @Update
     fun updateOrderItems(user: List<OrderItem>)
 

@@ -53,7 +53,7 @@ class SignIn : AppCompatActivity() {
                         binding.password.setText("")
                         binding.userName.setText("")
                         val intent = Intent(this@SignIn, MainActivity::class.java)
-                        intent.putExtra("userId", response.body()!!.userId.toString()) // Replace "key" and "value" with your actual data
+                        intent.putExtra("userId", response.body()!!.userId.toString())
                         startActivity(intent)
                         finish()
 

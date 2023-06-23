@@ -24,6 +24,7 @@ class MyModel:ViewModel (){
     var position = -1
     var positionMenu =-1
     var restaurentId_card=0
+    var totalPrice=0
 
     fun loadData():List<Restaurent> {
         val listMenu = mutableListOf<Menu>(

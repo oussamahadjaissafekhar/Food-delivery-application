@@ -1,12 +1,14 @@
 package com.example.movieexample.retrofit
 
 import com.example.RestaurentApp.entity.Menu
+import com.example.RestaurentApp.entity.OrderRequest
 import com.example.RestaurentApp.entity.Restaurent
 import com.example.RestaurentApp.entity.user
 import com.example.RestaurentApp.url
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -23,6 +25,8 @@ interface Endpoint {
     @POST("authenticate")
     suspend fun authentification(@Field("username") username: String,
                                  @Field("password") password: String): Response<user>
+    @POST("addOrder")
+    suspend fun createOrder(@Body orderRequest: OrderRequest): Response<Any>
     companion object {
         @Volatile
         var endpoint: Endpoint? = null

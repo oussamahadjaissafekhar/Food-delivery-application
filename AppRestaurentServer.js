@@ -1,7 +1,8 @@
 const http = require('http');
 const url = require('url'); 
 const querystring = require('querystring');
-const {Authentication ,insertUser ,Restaurants,RestaurantMenu,addOrder} = require('./AppRestaurentBack');
+const {Authentication ,insertUser ,Restaurants,RestaurantMenu,addOrder,insertOrderWithOrderItems} = require('./AppRestaurentBack');
+const { Console } = require('console');
 
 const server = http.createServer(async (req, res) => {
   if (req.method === 'POST') {
@@ -40,7 +41,10 @@ const server = http.createServer(async (req, res) => {
     }else if(pathname === '/addUser'){
       // Add new user : Sign up
     }else if(pathname === '/addOrder'){
+      console.log("body :",body)
       const parsedData = JSON.parse(body);
+      console.log("parsedData : ",parsedData);
+      console.log("Order : ",parsedData.order);
       const Order = JSON.parse(parsedData.order);
       const OrderItems = JSON.parse(parsedData.orderItems);
       console.log("add new Order")
@@ -48,8 +52,10 @@ const server = http.createServer(async (req, res) => {
       console.log("parsedData : ",parsedData);
       console.log("Order : ",Order);
       console.log("Order items: ",OrderItems);
+      //console.log("type of order items : ",typeof(OrderItems))
+      console.log("type of order items : ",typeof(OrderItems))
       try{
-        await addOrder(res,Order);
+        await insertOrderWithOrderItems(res,Order,OrderItems);
       }catch (error) {
         console.error('Error retrieving data:', error);
         res.write('{}');

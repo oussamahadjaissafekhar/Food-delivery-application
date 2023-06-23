@@ -20,10 +20,10 @@ class MenuAdapter(val ctx:Context, val data:List<Menu>, val vm: MyModel):Recycle
 
     class MyViewHolder(val binding: MenuLayoutBinding) : RecyclerView.ViewHolder(binding.root)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        vm.positionMenu=position
-       val pos=vm.position
+       /* vm.positionMenu=position
+       val pos=vm.position*/
 
-        val  currentItem = vm.data.get(pos).listMenu?.get(position)
+        val currentItem = data[position]
 
 
         holder.binding.apply {
@@ -31,9 +31,9 @@ class MenuAdapter(val ctx:Context, val data:List<Menu>, val vm: MyModel):Recycle
                 .load(currentItem!!.image)
                 .into(imageView)
 
-            textView2.text = data[position].nom
+            textView2.text = data[position].name
             //textView2.text = R.drawable.cheeseburger.toString()
-            textView3.text = data[position].prix.toString()+"DA"
+            textView3.text = data[position].price.toString()+"DA"
         }
         holder.itemView.setOnClickListener(){
             view: View ->view.findNavController().navigate(R.id.action_restaurentFragment_to_menuFragment)

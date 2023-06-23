@@ -41,4 +41,9 @@
         android:name="com.example.RestaurentApp.fragments.Fragment3"
         android:label="fragment_3"
         tools:layout="@layout/fragment_3" />
+    <activity
+        android:id="@+id/signIn2"
+        android:name="com.example.RestaurentApp.SignIn"
+        android:label="activity_signin"
+        tools:layout="@layout/activity_signin" />
 </navigation>

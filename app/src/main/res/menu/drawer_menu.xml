@@ -25,6 +25,18 @@
         android:icon="@drawable/ic_alert_home"
         android:title="Third"
         android:visible="true" />
+    <item
+        android:id="@+id/signIn2"
+        android:enabled="true"
+        android:icon="@drawable/ic_alert_home"
+        android:title="Third"
+        android:visible="true" />
+    <item
+        android:id="@+id/logout"
+        android:enabled="true"
+        android:icon="@drawable/ic_alert_home"
+        android:title="Third"
+        android:visible="false" />
 
 
 </menu>

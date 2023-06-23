@@ -1,11 +1,11 @@
 const http = require('http');
 const url = require('url'); 
 const querystring = require('querystring');
-const {Authentication ,insertUser ,Restaurants,RestaurantMenu} = require('./AppRestaurentBack');
+const {Authentication ,insertUser ,Restaurants,RestaurantMenu,addOrder} = require('./AppRestaurentBack');
 
 const server = http.createServer(async (req, res) => {
   if (req.method === 'POST') {
-    console.log('Client connected');
+    console.log('Client connected with POST');
     let body = '';
     req.on('data', (chunk) => {
       body += chunk;
@@ -16,11 +16,17 @@ const server = http.createServer(async (req, res) => {
       // verifer le service desirer a consulter 
       const requestUrl = url.parse(req.url, true); // Parse the request URL
       const pathname = requestUrl.pathname;
-      if (pathname === '/connect') {
+      if (pathname === '/authenticate') {
         const username = formData.username;
         const password = formData.password;
         console.log('Authentication request with username:', username);
         console.log('Authentication request with password:', password);
+        if(username == undefined){
+          username = null;
+        }
+        if(password == undefined){
+          password = null;
+        }
         try{
           const user = {
             username:username,
@@ -33,6 +39,21 @@ const server = http.createServer(async (req, res) => {
       }
     }else if(pathname === '/addUser'){
       // Add new user : Sign up
+    }else if(pathname === '/addOrder'){
+      const parsedData = JSON.parse(body);
+      const Order = JSON.parse(parsedData.order);
+      const OrderItems = JSON.parse(parsedData.orderItems);
+      console.log("add new Order")
+      // Add new order 
+      console.log("parsedData : ",parsedData);
+      console.log("Order : ",Order);
+      console.log("Order items: ",OrderItems);
+      try{
+        await addOrder(res,Order);
+      }catch (error) {
+        console.error('Error retrieving data:', error);
+        res.write('{}');
+      }
     }else {
       res.writeHead(404, { 'Content-Type': 'text/html' });
       res.write('<h1>404 Not Found</h1>');
@@ -40,7 +61,7 @@ const server = http.createServer(async (req, res) => {
     }
     });
   } else if(req.method === 'GET'){
-    console.log("Client connected")
+    console.log("Client connected with GET")
     const requestUrl = url.parse(req.url, true); // Parse the request URL
     if (requestUrl.pathname  === '/restaurent/getall') {
       console.log("get restaurent all")
@@ -75,7 +96,6 @@ const server = http.createServer(async (req, res) => {
 server.listen(8080, () => {
   console.log('Server running on port 8080');
 });
-
 
 
 

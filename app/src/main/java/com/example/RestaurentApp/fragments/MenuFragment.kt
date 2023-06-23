@@ -25,13 +25,19 @@ override fun onCreateView(
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        /*val vm= ViewModelProvider(requireActivity()).get(MyModel::class.java)
+        val imageView: ImageView = binding.imageView2
+        Glide.with(requireActivity()).load(vm.menuData.get(vm.positionMenu).image).into(imageView)
+        binding.menuName.text = vm.menuData.get(vm.positionMenu).name
+        binding.description.text = vm.menuData.get(vm.positionMenu).description
+        binding.menuId.setText(vm.menuData.get(vm.positionMenu).idMenu.toString())*/
         val vm= ViewModelProvider(requireActivity()).get(MyModel::class.java)
         Glide.with(view)
-            .load(vm.data.get(vm.position).listMenu?.get(vm.positionMenu)?.image)
+            .load(vm.menuData.get(vm.positionMenu).image)
             .into(binding.imageView2)
        // binding.imageView2.setImageResource(Integer.parseInt(vm.data.get(vm.position).listMenu?.get(vm.positionMenu)?.image))
-        binding.textView4.text = vm.data.get(vm.position).listMenu?.get(vm.positionMenu)?.nom
-        binding.textView5.text = vm.data.get(vm.position).listMenu?.get(vm.positionMenu)?.descriptif
+        binding.textView4.text = vm.menuData.get(vm.positionMenu).name
+        binding.textView5.text = vm.menuData.get(vm.positionMenu).description
         binding.button.setOnClickListener(){
             var quantity = Integer.parseInt(binding.textView7.text.toString())
             quantity --
@@ -53,10 +59,10 @@ override fun onCreateView(
                 vm.menuId,
                 Integer.parseInt(binding.textView7.text.toString()),
                 vm.restaurantId,
-                vm.data.get(vm.position).listMenu?.get(vm.positionMenu)?.image.toString(),
-                vm.data.get(vm.position).listMenu?.get(vm.positionMenu)?.nom.toString(),
-                vm.data.get(vm.position).listMenu?.get(vm.positionMenu)?.descriptif.toString(),
-                vm.data.get(vm.position).listMenu?.get(vm.positionMenu)?.prix!!.toDouble(),
+                vm.menuData.get(vm.positionMenu).image.toString(),
+                vm.menuData.get(vm.positionMenu).name.toString(),
+                vm.menuData.get(vm.positionMenu).description.toString(),
+                vm.menuData.get(vm.positionMenu).price!!.toDouble(),
                 note
             )
             //verify that the database is empty to set the restaurent id

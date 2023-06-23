@@ -2,8 +2,8 @@ package com.example.RestaurentApp.entity
 
 data class Menu(
     val idMenu:Int,
-    val nom:String,
+    val name:String,
     val image:String,
-    val prix:Int,
-    val descriptif:String
+    val price:Float,
+    val description:String,
 ):java.io.Serializable

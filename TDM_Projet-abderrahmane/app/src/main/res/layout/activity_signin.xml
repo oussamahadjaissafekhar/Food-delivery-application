@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.example.RestaurentApp.SignIn">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white">
+
+
+        <ImageView
+            android:id="@+id/login_image_view"
+            android:layout_width="0dp"
+            android:layout_height="280dp"
+            android:contentDescription="@string/bg_img_desc"
+            android:scaleType="fitStart"
+            app:layout_constraintBottom_toTopOf="@id/userName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/login_shape" />
+
+        <TextView
+            android:id="@+id/login_welcome_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:text="@string/login_welcome_text"
+            android:textAppearance="@style/TextAppearance.MyTheme.Headline3"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/login_image_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/login_image_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.56" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/userName"
+            android:layout_width="332dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="20dp"
+
+            android:hint="Enter your email"
+            android:inputType="text"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_image_view" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="329dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="30dp"
+
+            android:hint="Enter your password"
+            android:inputType="textPassword"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userName"
+            app:layout_constraintBottom_toTopOf="@id/login_error_text_view"/>
+
+        <TextView
+            android:id="@+id/login_error_text_view"
+            android:layout_width="333dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="70dp"
+            android:gravity="center_vertical"
+            android:text="@string/login_error_text"
+            android:textAppearance="@style/TextAppearance.MyTheme.Subtitle2"
+            android:textColor="?attr/colorError"
+            app:drawableStartCompat="@android:drawable/stat_notify_error"
+            app:drawableTint="?attr/colorError"
+            app:layout_constraintBottom_toTopOf="@id/signIn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.474"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password" />
+
+        <Button
+            android:id="@+id/signIn"
+            android:layout_width="146dp"
+            android:layout_height="43dp"
+
+            android:layout_marginBottom="12dp"
+            android:layout_weight="1"
+            android:background="@color/red_dark"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"
+            android:text="@string/login_btn_text"
+
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/login_error_text_view"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sign up"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signIn" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="46dp"
+            android:layout_marginBottom="16dp"
+            android:text="you dont have an account "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/signup"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

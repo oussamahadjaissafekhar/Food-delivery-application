@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="card">Card</string>
+    <string name="second">Second</string>
+    <string name="third">Third</string>
+    <string name="sign_in">Sign in</string>
+    <string name="logout">Logout</string>
+    <string name="sfgdf">sfgdf</string>
+    <string name="bg_img_desc">Image View</string>
+    <string name="login_welcome">Welcome Back,</string>
+    <string name="login_welcome_text">Log In!</string>
+    <string name="login_mobile_hint">MOBILE NUMBER</string>
+    <string name="login_username">Enter your user name</string>
+    <string name="login_password_hint">PASSWORD</string>
+    <string name="login_password_ph">Enter Password</string>
+    <string name="login_switch_remember_text">Remember Me</string>
+    <string name="login_btn_text">Log In</string>
+    <string name="login_forgot_text">Forgot Password?</string>
+    <string name="login_error_text">Incorrect Mobile Number or Password</string>
+    <string name="login_signup_text">New User? Sign Up</string>
+
+
+</resources>

@@ -23,6 +23,7 @@ class CardAdapter(val ctx:Context, val data:MutableList<OrderItem>,val vm:MyMode
         }}
     override fun onBindViewHolder(holder: CardHolder, position: Int) {
         holder.binding.apply {
+
             Glide.with(holder.itemView)
                 .load(data[position].image)
                 .into(itemImage)

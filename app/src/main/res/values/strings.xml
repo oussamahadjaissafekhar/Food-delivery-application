@@ -15,7 +15,7 @@
     <string name="login_welcome">Welcome Back,</string>
     <string name="login_welcome_text">Log In!</string>
     <string name="login_mobile_hint">MOBILE NUMBER</string>
-    <string name="login_mobile_ph">Enter mobile number</string>
+    <string name="login_username">Enter your user name</string>
     <string name="login_password_hint">PASSWORD</string>
     <string name="login_password_ph">Enter Password</string>
     <string name="login_switch_remember_text">Remember Me</string>
@@ -23,8 +23,6 @@
     <string name="login_forgot_text">Forgot Password?</string>
     <string name="login_error_text">Incorrect Mobile Number or Password</string>
     <string name="login_signup_text">New User? Sign Up</string>
-
-
 
 
 </resources>

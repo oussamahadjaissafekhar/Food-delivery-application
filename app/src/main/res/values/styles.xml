@@ -86,9 +86,7 @@
             <item name="android:textStyle">bold</item>
             <item name="android:layout_marginBottom">8dp</item>
         </style>
-    <style name="TextAppearance.MyTheme.Headline3" parent="TextAppearance.MaterialComponents.Headline3"/>
-    <style name="TextAppearance.MyTheme.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2"/>
-    <style name="TextAppearance.MyTheme.Body2" parent="TextAppearance.MaterialComponents.Body2"/>
+
         <style name="NormalTextStyle">
             <item name="android:textColor">@color/black_effective</item>
             <item name="android:textSize">@dimen/normal_text_size</item>

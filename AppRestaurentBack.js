@@ -66,12 +66,12 @@ async function Authentication(res,user){
     }
 }
 // Ajout un utilisateur lors de sign up
-function addUser(db,newUser){
+function insertUser(db,User){
   return new Promise((resolve, reject) => {
     db('muser')
-      .insert('newUser')
+      .insert(User)
       .then(([insertedUserId]) => { // Destructure the inserted order ID
-        return db('morder').where('order_id', insertedUserId).first(); // Retrieve the inserted order by ID
+        return db('muser').where('userId', insertedUserId).first(); // Retrieve the inserted order by ID
       })
       .then(insertedUser => {
         resolve(insertedUser); // Resolve the promise with the inserted order
@@ -81,10 +81,10 @@ function addUser(db,newUser){
       });
   });
 }
-async function insertUser(){
+async function addUser(res,User){
   const db = Connect();
   try {
-    const jsonData = await insertOrder(db,order);
+    const jsonData = await insertUser(db,User);
     if (jsonData == null) {
       res.write('{}');
     } else {
@@ -283,7 +283,7 @@ async function insertOrderWithOrderItems(res,order,orderItems){
 }
 module.exports = {
     Authentication,
-    insertUser,
+    addUser,
     Restaurants,
     RestaurantMenu,
     addOrder,

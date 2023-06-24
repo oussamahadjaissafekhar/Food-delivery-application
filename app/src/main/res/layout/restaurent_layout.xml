@@ -117,4 +117,16 @@
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/instagrame" />
 
+    <Button
+        android:id="@+id/Rate"
+        android:layout_width="79dp"
+        android:layout_height="39dp"
+        android:text="Rate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/instagramme"
+        app:layout_constraintHorizontal_bias="0.638"
+        app:layout_constraintStart_toEndOf="@+id/Logo"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

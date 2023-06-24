@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.example.RestaurentApp.adapters.MenuAdapter
 import com.example.movieexample.databinding.ActivitySigninBinding
@@ -18,11 +19,18 @@ class SignIn : AppCompatActivity() {
         binding= ActivitySigninBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        binding.loginErrorTextView.visibility = View.GONE
+
         binding.apply {
+            signup.setOnClickListener(){
+                val intent = Intent(this@SignIn, SignUp::class.java)
+                startActivity(intent)
+
+            }
             signIn.setOnClickListener(){
                 val username = userName.text
                 val password = password.text
-                if (username.isEmpty() or password.isEmpty()) {
+                if (username!!.isEmpty() or password!!.isEmpty()) {
                     Toast.makeText(this@SignIn, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 } else {
                     //Log.d("username", username.toString())
@@ -48,7 +56,8 @@ class SignIn : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful && response.body() != null) {
                     if(response.body()!!.userId == 0){
-                        Toast.makeText(this@SignIn, "password or username invalid", Toast.LENGTH_SHORT).show()
+                        binding.loginErrorTextView.visibility = View.VISIBLE
+
                     }else{
                         binding.password.setText("")
                         binding.userName.setText("")

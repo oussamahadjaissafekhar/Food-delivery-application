@@ -10,7 +10,7 @@
         android:visible="true" />
 
     <item
-        android:id="@+id/fragment2"
+        android:id="@+id/profile"
         android:enabled="true"
         android:icon="@drawable/ic_sells_menu"
         android:title="@string/second"
@@ -19,24 +19,14 @@
 
 
 
-    <item
-        android:id="@+id/fragment3"
-        android:enabled="true"
-        android:icon="@drawable/ic_alert_home"
-        android:title="@string/third"
-        android:visible="true" />
+
     <item
         android:id="@+id/signIn2"
         android:enabled="true"
         android:icon="@drawable/ic_alert_home"
         android:title="@string/sign_in"
         android:visible="true" />
-    <item
-        android:id="@+id/logout"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_login_24"
-        android:title="@string/logout"
-        android:visible="false" />
+
 
 
 </menu>

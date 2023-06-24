@@ -1,7 +1,7 @@
 const http = require('http');
 const url = require('url'); 
 const querystring = require('querystring');
-const {Authentication ,insertUser ,Restaurants,RestaurantMenu,addOrder,insertOrderWithOrderItems} = require('./AppRestaurentBack');
+const {Authentication ,addUser ,Restaurants,RestaurantMenu,addOrder,insertOrderWithOrderItems} = require('./AppRestaurentBack');
 const { Console } = require('console');
 
 const server = http.createServer(async (req, res) => {
@@ -39,7 +39,17 @@ const server = http.createServer(async (req, res) => {
           res.write('{}');
       }
     }else if(pathname === '/addUser'){
-      // Add new user : Sign up
+      console.log("add user")
+      const formData = querystring.parse(body); 
+      console.log("formData : ",formData); 
+      const User = JSON.parse(formData.user);
+      console.log("User : ",User);
+      try{
+        await addUser(res,User);
+      }catch (error) {
+        console.error('Error retrieving data:', error);
+        res.write('{}');
+      }
     }else if(pathname === '/addOrder'){
       console.log("body :",body)
       const parsedData = JSON.parse(body);

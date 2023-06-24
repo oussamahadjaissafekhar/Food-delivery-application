@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "900879177968",
+    "project_id": "fcmpushnotification-1a19b",
+    "storage_bucket": "fcmpushnotification-1a19b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900879177968:android:a26e23562cd9cc85284a35",
+        "android_client_info": {
+          "package_name": "com.example.RestaurentApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900879177968-aee3ip4jhjjura1p9qsq8t8ptf48bo83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2wH2MmeaJ_CL3ywbzidPpXfeNtBHcZhs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900879177968-aee3ip4jhjjura1p9qsq8t8ptf48bo83.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

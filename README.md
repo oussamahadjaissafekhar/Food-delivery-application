@@ -20,9 +20,7 @@ A modern and efficient food delivery application built using Kotlin. This app si
 
 3. nc the projectSy with Gradle files.
 
-4. Add your API keys and configuration files (e.g., Firebase `google-services.json`, Payment Gateway keys).
-
-5. Build and run the app on an emulator or physical device.
+4. Build and run the app on an emulator or physical device.
 
 ---
 
